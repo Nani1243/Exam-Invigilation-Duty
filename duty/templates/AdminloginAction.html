@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{%block start%}
+{% load static %}
+<style>
+   
+    a:hover{
+        background-color: #e14240;
+    }
+    b,h1{
+        display: flex;
+        justify-content: center;
+
+    }
+    form{
+        border: none;
+    }
+</style>
+<h1>Exam Invigilation Duty</h1>
+<hr>
+<nav class="navbar navbar-expand-lg bg-danger mt-5">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        
+        <ul class="navbar-nav  mb-lg-0">
+          <li class="nav-item">
+            <h4><a class="nav-link "  href="/AddFaculty/">Add Faculty</a></h4>
+          </li>
+          <li class="nav-item">
+            <h4><a class="nav-link" href="/AddLeisure/">Add Leisute Time</a></h4>
+          </li>
+          <li class="nav-item">
+            <h4><a class="nav-link mx-auto" href="#" >View Scheduled</a></h4>
+          </li>
+          <li class="nav-item">
+            <h4><a class="nav-link " href="/index/" >Logout</a></h4>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+ <center> <img class="mt-5" src="{% static 'mysite/images/tra.jpg' %}" width="500px" ></center>
+
+ <b class="mt-3">Welcome Admin</b><br>
+
+{%endblock%}

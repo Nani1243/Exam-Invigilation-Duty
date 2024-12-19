@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{%block start%}
+{% load static %}
+<style>
+   
+    a:hover{
+        background-color: #e14240;
+    }
+    b,h1{
+        display: flex;
+        justify-content: center;
+
+    }
+</style>
+<h1>Exam Invigilation Duty</h1>
+<hr>
+<nav class="navbar navbar-expand-lg bg-danger mt-5">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <h4><a class="nav-link "  href="/index/">Home</a></h4>
+          </li>
+          <li class="nav-item">
+            <h4><a class="nav-link" href="/Adminlogin/">Admin Login Here</a></h4>
+          </li>
+          <li class="nav-item">
+            <h4><a class="nav-link" href="#" >Invigilator Login Here</a></h4>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="container mt-5 mx-auto  p-3 col-6">
+
+  <form method="post">
+    {% csrf_token %}
+    <h1>Admin Register Screen</h1>
+    <hr>
+    {%if messages%}
+    <div class="alert alert-primary" role="alert">
+        {%for message in messages %}
+        {{message}}
+        {%endfor%}
+      </div>
+      {%endif%}
+      <div class="mb-3 mt-3" >
+        <label for="exampleInputEmail1" class="form-label">First Name</label>
+        <input type="text" class="form-control" name="first_name">
+      </div>
+    <div class="mb-3 mt-3" >
+      <label for="exampleInputEmail1" class="form-label">Last Name</label>
+      <input type="text" class="form-control" name="last_name">
+    </div>
+    <div class="mb-3 mt-3" >
+      <label for="exampleInputEmail1" class="form-label">User Name</label>
+      <input type="text" class="form-control" name="username">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" name="password">
+    </div>
+
+      <div class="mb-3 form-check">
+        <p>I  Have Username  <a href="/Adminlogin/"> Login</a></p>
+        </div>
+    <div class="mb-3 form-check">
+    <button type="submit" class="btn btn-primary">Register</button>
+    </div>
+  </form>
+</div>
+ 
+{%endblock%}

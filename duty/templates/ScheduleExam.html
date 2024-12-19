@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{%block start%}
+{% load static %}
+<style>
+   
+    a:hover{
+        background-color: #e14240;
+    }
+    b,h1{
+        display: flex;
+        justify-content: center;
+
+    }
+    
+    form{
+        border: none;
+    }
+</style>
+<h1>Exam Invigilation Duty</h1>
+<hr>
+<nav class="navbar navbar-expand-lg bg-danger mt-5">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        
+        <ul class="navbar-nav  mb-lg-0">
+          <li class="nav-item">
+            <h4><a class="nav-link "  href="/AddFaculty/">Add Faculty</a></h4>
+          </li>
+          <li class="nav-item">
+            <h4><a class="nav-link" href="#">Add Leisute Time</a></h4>
+          </li>
+          <li class="nav-item">
+            <h4><a class="nav-link mx-auto" href="#" >View Scheduled</a></h4>
+          </li>
+          <li class="nav-item">
+            <h4><a class="nav-link " href="/index/" >Logout</a></h4>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <h3><b>Schedule Exam Screen</b></h3>
+    <form class="mt-5 " >
+	<TABLE align=center width="30%" class="notepad">
+		<TR><TH align="left"><font size="2" color="black">Exam&nbsp;Name</font>
+		<TD>&nbsp;<Input type=text name="t1"  class="mt-3" value='' >
+		
+		</TD>
+		</TR>
+        <TR><TH align="left"><font size="2" color="black">Hall&nbsp;No</font>
+            <TD>&nbsp;<Input type=text name="t1"  class="mt-3" value='' >
+            
+            </TD>
+            </TR>
+            <TR><TH align="left"><font size="2" color="black">Exam&nbsp;Time</font>
+                <TD>&nbsp;<select name="t3" class="mt-3">
+                <option value="9AM - 12AM">9AM - 12AM</option>
+                <option value="10AM - 13PM">10AM - 13PM</option>
+                <option value="11AM - 14PM">11AM - 14PM</option>
+                <option value="12PM - 15PM">12PM - 15PM</option>
+                <option value="13PM - 16PM">13PM - 16PM</option>
+                <option value="14PM - 17PM">14PM - 17PM</option>
+                <option value="15AM - 18PM">15AM - 18PM</option>		
+                </select>
+                </TR>
+        
+                <TR><TH align="left"><font size="2" color="black">Exam&nbsp;Date</font>
+                
+                        <TD>&nbsp;<Input type="date" name="t2" class="mt-3" value=''>
+                        </TD>
+                        </TR>
+                
+                         
+                    <TD>	
+                  <input type="submit" class="mt-3" value="Submit">
+                 
+                  </TABLE>
+            
+        </form>
+		</div>
+
+{%endblock%}
