@@ -18,3 +18,12 @@ class AddFaculty(models.Model):
 
     def __str__(self)->str:
         return self.faculty_name
+class Schedule(models.Model):
+    examname=models.CharField(max_length=100)
+    hall=models.IntegerField()
+    Exam=(('9AM-12PM','9AM-12PM'),('10AM-13PM','10AM-13PM'),('11AM-14PM','11AM-14PM'),('12PM-15PM','12PM-15PM'),('13PM - 16PM','13PM - 16PM'),('14PM - 17PM','14PM - 17PM'),('15PM - 16PM','15PM - 16PM'))
+    examtime=models.CharField(max_length=100,choices=Exam)
+    examdate=models.DateField()
+
+    def __str__(self)->str:
+        return self.examname

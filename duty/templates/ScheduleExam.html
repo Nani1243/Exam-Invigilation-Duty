@@ -31,7 +31,10 @@
             <h4><a class="nav-link "  href="/AddFaculty/">Add Faculty</a></h4>
           </li>
           <li class="nav-item">
-            <h4><a class="nav-link" href="#">Add Leisute Time</a></h4>
+            <h4><a class="nav-link" href="/AddLeisure/">Add Leisute Time</a></h4>
+          </li>
+          <li class="nav-item">
+            <h4><a class="nav-link " href="/ScheduleExam/" >Schedule Exam Time</a></h4>
           </li>
           <li class="nav-item">
             <h4><a class="nav-link mx-auto" href="#" >View Scheduled</a></h4>
@@ -45,22 +48,31 @@
   </nav>
 
   <div class="container mt-5">
+    <form class="mt-5 " method="post" >
+      {% csrf_token %}
     <h3><b>Schedule Exam Screen</b></h3>
-    <form class="mt-5 " >
+    {%if messages%}
+    <div class="alert text-bg-success" role="alert">
+        {%for message in messages %}
+        {{message}}
+        {%endfor%}
+      </div>
+      {%endif%}
+    
 	<TABLE align=center width="30%" class="notepad">
 		<TR><TH align="left"><font size="2" color="black">Exam&nbsp;Name</font>
-		<TD>&nbsp;<Input type=text name="t1"  class="mt-3" value='' >
+		<TD>&nbsp;<Input type="text"  name="examname" class="mt-3" value='' >
 		
 		</TD>
 		</TR>
         <TR><TH align="left"><font size="2" color="black">Hall&nbsp;No</font>
-            <TD>&nbsp;<Input type=text name="t1"  class="mt-3" value='' >
+            <TD>&nbsp;<Input type="text" name="hall"  class="mt-3" value='' >
             
             </TD>
             </TR>
             <TR><TH align="left"><font size="2" color="black">Exam&nbsp;Time</font>
-                <TD>&nbsp;<select name="t3" class="mt-3">
-                <option value="9AM - 12AM">9AM - 12AM</option>
+                <TD>&nbsp;<select name="examtime" class="mt-3">
+                <option value="9AM - 12PM">9AM - 12PM</option>
                 <option value="10AM - 13PM">10AM - 13PM</option>
                 <option value="11AM - 14PM">11AM - 14PM</option>
                 <option value="12PM - 15PM">12PM - 15PM</option>
@@ -72,7 +84,7 @@
         
                 <TR><TH align="left"><font size="2" color="black">Exam&nbsp;Date</font>
                 
-                        <TD>&nbsp;<Input type="date" name="t2" class="mt-3" value=''>
+                        <TD>&nbsp;<Input type="date" name="examdate" class="mt-3" value=''>
                         </TD>
                         </TR>
                 

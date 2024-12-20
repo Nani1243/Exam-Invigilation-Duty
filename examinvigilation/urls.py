@@ -27,6 +27,6 @@ urlpatterns = [
     path("AddFaculty/",AddFaculty_page,name='AddFaculty'),
     path("ScheduleExam/",ScheduleExam,name='ScheduleExam'),
     path("AddLeisure/",AddLeisure,name='AddLeisure'),
-        
+    path("available_faculty/",available,name="available"),
         
 ]

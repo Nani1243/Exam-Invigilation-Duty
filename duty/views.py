@@ -73,12 +73,34 @@ def AddFaculty_page(request):
             username=username,
             password=password
         )
+
+        
         messages.success(request,"Faculty Added Successfully")
         return redirect("/AddFaculty/")
 
-        
-    return render(request,"AddFaculty.html")
+    queryset=AddFaculty.objects.all()
+    context={'queryset':queryset}
+    return render(request,"AddFaculty.html",context)
 def ScheduleExam(request):
+    if request.method == "POST":
+        data=request.POST
+        examname=data.get("examname")
+        hall=data.get("hall")
+        examtime=data.get("examtime")
+        examdate=data.get("examdate")
+
+        Schedule.objects.create(
+            examname=examname,
+            hall=hall,
+            examtime=examtime,
+            examdate=examdate,   
+        )
+        messages.success(request,"Added Successfully")
+        return redirect("/ScheduleExam/")
     return render(request,"ScheduleExam.html")
 def AddLeisure(request):
-    return render(request,"AddLeisure.html")
+    queryset=AddFaculty.objects.all()
+    context={'queryset':queryset}
+    return render(request,"AddLeisure.html",context)
+def available(request):
+    return redirect(request,"available_faculty.html")
