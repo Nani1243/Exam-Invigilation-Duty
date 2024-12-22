@@ -64,23 +64,30 @@ def AddFaculty_page(request):
         qualification=data.get('qualification')
         username=data.get('username')
         password=data.get('password')
+        
+        user1=AddFaculty.objects.filter(username=username)
+        if user1.exists():
+            messages.error(request,"username already exists")
+            return redirect("/AddFaculty/")
 
-        AddFaculty.objects.create(
+
+        user=AddFaculty.objects.create(
             faculty_name=faculty_name,
             gender=gender,
             contact=contact,
             qualification=qualification,
             username=username,
-            password=password
+            password=password,
         )
-
+        
         
         messages.success(request,"Faculty Added Successfully")
         return redirect("/AddFaculty/")
-
     queryset=AddFaculty.objects.all()
     context={'queryset':queryset}
     return render(request,"AddFaculty.html",context)
+def available_faculty(request):
+    return render(request,"available_faculty.html")
 def ScheduleExam(request):
     if request.method == "POST":
         data=request.POST
@@ -88,19 +95,80 @@ def ScheduleExam(request):
         hall=data.get("hall")
         examtime=data.get("examtime")
         examdate=data.get("examdate")
+        facultyname1=data.get("facultyname1")
+        
+
+        user=Schedule.objects.filter(examname=examname)
+        if user.exists():
+            messages.error(request,"This Subject Already Taken")
+            return redirect("/ScheduleExam/")
 
         Schedule.objects.create(
             examname=examname,
             hall=hall,
             examtime=examtime,
-            examdate=examdate,   
+            examdate=examdate,
+            facultyname1=facultyname1   
         )
-        messages.success(request,"Added Successfully")
-        return redirect("/ScheduleExam/")
-    return render(request,"ScheduleExam.html")
+        return redirect("/AfterSchedule/")
+    queryset=AddFaculty.objects.all()
+    context={'queryset':queryset}
+    return render(request,"ScheduleExam.html",context)
 def AddLeisure(request):
+    if request.method=="POST":
+        data=request.POST
+        facultyname=data.get('facultyname')
+        examtime=data.get('examtime')
+
+        AddLeisurepage.objects.create(
+            facultyname=facultyname,
+            examtime=examtime
+        )
+        add=AddLeisurepage.objects.filter(facultyname__icontains=facultyname)
+        for a in add:
+            messages.info(request,f"{a.examtime} is alloted to {a.facultyname}")
     queryset=AddFaculty.objects.all()
     context={'queryset':queryset}
     return render(request,"AddLeisure.html",context)
-def available(request):
-    return redirect(request,"available_faculty.html")
+def AfterSchedule(request):
+    queryset=AddLeisurepage.objects.all()
+    context={"queryset":queryset}
+    return render(request,"AfterSchedule.html",context)
+def confirm(request,facultyname):
+    queryset=Schedule.objects.filter(facultyname1__icontains=facultyname)
+    
+    context={'queryset':queryset}
+    return render(request,"confirm.html",context)
+def ViewSchedule(request):
+    queryset=Schedule.objects.all()
+    context={"queryset":queryset}
+
+    return render(request,"ViewSchedule.html",context)
+
+def invigilator(request):
+    res=""
+    if request.method== "POST":
+        data=request.POST
+        user=data.get("user")
+        password1=data.get("password1")
+        
+
+        name=AddFaculty.objects.filter(username__icontains=user)
+        for n in name:
+            res=n.faculty_name
+            print(res)
+    
+    context={'res':res}
+    
+    
+    return render(request,"invigilator.html",context)
+
+def invigilatorpage(request,res):
+    user1=AddFaculty.objects.filter(faculty_name__icontains=res)
+    context={'user1':user1}
+    
+    return render(request,"invigilatorpage.html",context)
+def invigilatorAllot(request,faculty_name):
+    queryset=Schedule.objects.filter(facultyname1__icontains=faculty_name)
+    context={'queryset':queryset}
+    return render(request,"invigilatorAllot.html",context)

@@ -15,6 +15,15 @@
     form{
         border: none;
     }
+    table,th,td{
+        border: 1px solid black;
+        font: bold;
+    }
+    a{
+        text-decoration: none;
+        color: black;
+        font: bold;
+    }
 </style>
 <h1>Exam Invigilation Duty</h1>
 <hr>
@@ -47,6 +56,23 @@
   </nav>
  <center> <img class="mt-5" src="{% static 'mysite/images/tra.jpg' %}" width="500px" ></center>
 
- <b class="mt-3">Welcome Admin</b><br>
-
+ <table class="mx-auto mt-4" id="t">
+    <tr>
+        <th>Exam Name</th>
+      <th>FacultyName</th>
+      <th>HallNo</th>
+      <th>ExamTime</th>
+      <th>ExamDate</th>
+    </tr>
+    {% for q in queryset %}
+    <tr>
+        <td><b>{{q.examname}}</b></td>
+      <td><b>{{q.facultyname1}}</b></td>
+      <td><b>{{q.hall}}</b></td>
+      <td><b>{{q.examtime}}</b></td>
+      <td><b>{{q.examdate}}</b></td>
+      
+      
+    </tr>
+    {%endfor%}
 {%endblock%}

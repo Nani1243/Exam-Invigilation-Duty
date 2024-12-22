@@ -27,6 +27,11 @@ urlpatterns = [
     path("AddFaculty/",AddFaculty_page,name='AddFaculty'),
     path("ScheduleExam/",ScheduleExam,name='ScheduleExam'),
     path("AddLeisure/",AddLeisure,name='AddLeisure'),
-    path("available_faculty/",available,name="available"),
-        
+    path("available_faculty/",available_faculty,name="available"),
+    path("AfterSchedule/",AfterSchedule,name='AfterSchedule'),
+    path("confirm/<facultyname>",confirm,name='confirm'),
+    path("ViewSchedule/",ViewSchedule,name='ViewSchedule'),
+    path("invigilator/",invigilator,name='invigilator'),
+    path("invigilatorpage/<res>",invigilatorpage,name='invigilatorpage'), 
+    path("invigilatorAllot/<faculty_name>",invigilatorAllot,name='invigilatorAllot'),           
 ]

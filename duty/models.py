@@ -24,6 +24,14 @@ class Schedule(models.Model):
     Exam=(('9AM-12PM','9AM-12PM'),('10AM-13PM','10AM-13PM'),('11AM-14PM','11AM-14PM'),('12PM-15PM','12PM-15PM'),('13PM - 16PM','13PM - 16PM'),('14PM - 17PM','14PM - 17PM'),('15PM - 16PM','15PM - 16PM'))
     examtime=models.CharField(max_length=100,choices=Exam)
     examdate=models.DateField()
+    facultyname1=models.CharField(max_length=100)
 
     def __str__(self)->str:
-        return self.examname
+        return self.examname,self.facultyname1
+class AddLeisurepage(models.Model): 
+    
+    facultyname=models.CharField(max_length=100)
+    Exam=(('9AM-12PM','9AM-12PM'),('10AM-13PM','10AM-13PM'),('11AM-14PM','11AM-14PM'),('12PM-15PM','12PM-15PM'),('13PM - 16PM','13PM - 16PM'),('14PM - 17PM','14PM - 17PM'),('15PM - 16PM','15PM - 16PM'))
+    examtime=models.CharField(max_length=100,choices=Exam)
+    def __str__(self)->str:
+        return self.facultyname

@@ -46,7 +46,12 @@
     </div>
   </nav>
  <center> <img class="mt-5" src="{% static 'mysite/images/tra.jpg' %}" width="500px" ></center>
+{% for q in queryset %}
+ <center><b>{{q.examname}} Invigilator Choosen As {{q.facultyname1}}</b></center>
+ <center><b>Hall No : {{q.hall}}</b></center>
+ <center><b>Exam Date :  {{q.examdate}}</b></center>
+ <center><b>Exam Time :  {{q.examtime}}</b></center>
 
- <b class="mt-3">Welcome Admin</b><br>
 
+{%endfor%}
 {%endblock%}
