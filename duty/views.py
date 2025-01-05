@@ -2,13 +2,16 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 from duty.models import *
 def base(request):
     return render(request,"base.html")
 def index(request):
     return render(request,"index.html")
 def Adminlogin(request):
+    
     if request.method=="POST":
+        
         data=request.POST
         username=data.get("username")
         password=data.get("password")
@@ -23,6 +26,7 @@ def Adminlogin(request):
         else:
             login(request,user)
             return redirect("/AdminloginAction/")
+    
     
     return render(request,"Adminlogin.html",)
 
@@ -46,15 +50,17 @@ def Adminregister(request):
         )
         user.set_password(password)
         user.save()
-        messages.info(request,"Account Created Successfully")
+        messages.successs(request,"Account Created Successfully")
         return redirect("/Adminregister/")
         
 
 
     return render(request,"Adminregister.html")
+@login_required
 def AdminloginAction(request):
     
     return render(request,"AdminloginAction.html")
+@login_required
 def AddFaculty_page(request):
     if request.method=="POST":
         data=request.POST
@@ -86,6 +92,7 @@ def AddFaculty_page(request):
     queryset=AddFaculty.objects.all()
     context={'queryset':queryset}
     return render(request,"AddFaculty.html",context)
+@login_required
 def available_faculty(request):
     return render(request,"available_faculty.html")
 def ScheduleExam(request):
@@ -114,6 +121,7 @@ def ScheduleExam(request):
     queryset=AddFaculty.objects.all()
     context={'queryset':queryset}
     return render(request,"ScheduleExam.html",context)
+@login_required
 def AddLeisure(request):
     if request.method=="POST":
         data=request.POST
@@ -130,6 +138,7 @@ def AddLeisure(request):
     queryset=AddFaculty.objects.all()
     context={'queryset':queryset}
     return render(request,"AddLeisure.html",context)
+@login_required
 def AfterSchedule(request):
     queryset=AddLeisurepage.objects.all()
     context={"queryset":queryset}
@@ -139,6 +148,7 @@ def confirm(request,facultyname):
     
     context={'queryset':queryset}
     return render(request,"confirm.html",context)
+@login_required
 def ViewSchedule(request):
     queryset=Schedule.objects.all()
     context={"queryset":queryset}
@@ -151,23 +161,23 @@ def invigilator(request):
         data=request.POST
         user=data.get("user")
         password1=data.get("password1")
+
         
 
-        name=AddFaculty.objects.filter(username__icontains=user)
-        for n in name:
-            res=n.faculty_name
-            print(res)
+        facul=AddFaculty.objects.get(username__icontains=user)
+        faculty_name=facul.faculty_name
     
-    context={'res':res}
+        return redirect("invigilatorpage",res=faculty_name)
+
     
-    
-    return render(request,"invigilator.html",context)
+    return render(request,"invigilator.html")
 
 def invigilatorpage(request,res):
-    user1=AddFaculty.objects.filter(faculty_name__icontains=res)
-    context={'user1':user1}
+    res=res
     
-    return render(request,"invigilatorpage.html",context)
+    return render(request,"invigilatorpage.html",{'res':res})
+
+
 def invigilatorAllot(request,faculty_name):
     queryset=Schedule.objects.filter(facultyname1__icontains=faculty_name)
     context={'queryset':queryset}

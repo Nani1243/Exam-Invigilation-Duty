@@ -40,7 +40,8 @@
       </div>
     </div>
   </nav>
-  <form action="/invigilatorpage/{{res}}" method="post">
+  
+  <form action="{% url 'invigilator' %}" method="post">
     {% csrf_token %}
     {%if messages%}
     <div class="alert alert-primary" role="alert">
@@ -62,16 +63,14 @@
             </TR>
 <TD>
    
-   <b>{{res}}</b>
-
+  
   
   <button class="btn btn-primary">Login</button>
 
 
-
 </TD>
-</TABLE>
 
+</TABLE>
 
 
 

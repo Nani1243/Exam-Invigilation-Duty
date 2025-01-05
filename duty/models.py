@@ -27,7 +27,7 @@ class Schedule(models.Model):
     facultyname1=models.CharField(max_length=100)
 
     def __str__(self)->str:
-        return self.examname,self.facultyname1
+        return self.examname
 class AddLeisurepage(models.Model): 
     
     facultyname=models.CharField(max_length=100)

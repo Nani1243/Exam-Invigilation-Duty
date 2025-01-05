@@ -24,9 +24,10 @@
         
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            {%for u in user1 %}
-            <h3><a class="nav-link "  href="/invigilatorAllot/{{u.faculty_name}}">View Alloted Schedule</a></h3>
-            {%endfor%}
+           
+            <h3><a class="nav-link "  href="/invigilatorAllot/{{res}}">View Alloted Schedule</a></h3>
+            
+           
           </li>
           <li class="nav-item">
             <h3><a class="nav-link" href="/index/">Logout</a></h3>
@@ -36,7 +37,7 @@
     </div>
   </nav>
  <center> <img class="mt-5" src="{% static 'mysite/images/tra.jpg' %}" width="500px" ></center>
- {% for u in user1 %}
- <center class="mt-3"><b>Welcome {{u.faculty_name}}</b></center>
- {%endfor%}
+
+ <center class="mt-3"><b>Welcome {{res}}</b></center>
+
 {%endblock%}
