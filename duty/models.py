@@ -10,28 +10,32 @@ class AddFaculty(models.Model):
     qualification_choices=(('M','M.TECH'),
        ('M','MBA'),('M','MCA'),('M','MSC'),('D','DEGREE'),('B','BTECH')
        )
-    gender=models.CharField(max_length=100,choices=Gender_choices,default="Male")
+    gender=models.CharField(max_length=100,choices=Gender_choices)
     contact=models.CharField(max_length=100,default="")
-    qualification=models.CharField(max_length=100,choices=qualification_choices,default="M.TECH")
+    qualification=models.CharField(max_length=100,choices=qualification_choices)
     username=models.CharField(max_length=100)
     password=models.CharField(max_length=100)
 
     def __str__(self)->str:
         return self.faculty_name
+class AddLeisurepage(models.Model): 
+    
+    facultyname=models.ForeignKey(AddFaculty,on_delete=models.CASCADE)
+    Exam=(('9AM-12PM','9AM-12PM'),('10AM-13PM','10AM-13PM'),('11AM-14PM','11AM-14PM'),('12PM-15PM','12PM-15PM'),('13PM - 16PM','13PM - 16PM'),('14PM - 17PM','14PM - 17PM'),('15PM - 16PM','15PM - 16PM'))
+    examtime=models.CharField(max_length=100,choices=Exam)
+    def __str__(self)->str:
+        return self.facultyname.faculty_name
+    
 class Schedule(models.Model):
     examname=models.CharField(max_length=100)
     hall=models.IntegerField()
     Exam=(('9AM-12PM','9AM-12PM'),('10AM-13PM','10AM-13PM'),('11AM-14PM','11AM-14PM'),('12PM-15PM','12PM-15PM'),('13PM - 16PM','13PM - 16PM'),('14PM - 17PM','14PM - 17PM'),('15PM - 16PM','15PM - 16PM'))
     examtime=models.CharField(max_length=100,choices=Exam)
     examdate=models.DateField()
-    facultyname1=models.CharField(max_length=100)
-
-    def __str__(self)->str:
-        return self.examname
-class AddLeisurepage(models.Model): 
+    facultyname1=models.ForeignKey(AddFaculty,on_delete=models.CASCADE)
     
-    facultyname=models.CharField(max_length=100)
-    Exam=(('9AM-12PM','9AM-12PM'),('10AM-13PM','10AM-13PM'),('11AM-14PM','11AM-14PM'),('12PM-15PM','12PM-15PM'),('13PM - 16PM','13PM - 16PM'),('14PM - 17PM','14PM - 17PM'),('15PM - 16PM','15PM - 16PM'))
-    examtime=models.CharField(max_length=100,choices=Exam)
-    def __str__(self)->str:
-        return self.facultyname
+
+
+    def __str__(self):
+        return f"{self.facultyname1.faculty_name},{self.examname}"
+

@@ -24,13 +24,13 @@
         
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <h4><a class="nav-link "  href="/index/">Home</a></h4>
+            <h3><a class="nav-link "  href="/index/">Home</a></h3>
           </li>
           <li class="nav-item">
-            <h4><a class="nav-link" href="/Adminlogin/">Admin Login Here</a></h4>
+            <h3><a class="nav-link" href="/Adminlogin/">Admin Login Here</a></h3>
           </li>
           <li class="nav-item">
-            <h4><a class="nav-link" href="#" >Invigilator Login Here</a></h4>
+            <h3><a class="nav-link" href="/invigilator/">Admin Login Here</a></h3>
           </li>
         </ul>
       </div>
@@ -38,42 +38,52 @@
   </nav>
   
   <div class="container mt-5 mx-auto  p-3 col-6">
-
-  <form method="post">
-    {% csrf_token %}
-    <h1>Admin Register Screen</h1>
-    <hr>
-    {%if messages%}
-    <div class="alert alert-primary" role="alert">
-        {%for message in messages %}
-        {{message}}
-        {%endfor%}
-      </div>
-      {%endif%}
-      <div class="mb-3 mt-3" >
-        <label for="exampleInputEmail1" class="form-label">First Name</label>
-        <input type="text" class="form-control" name="first_name">
-      </div>
-    <div class="mb-3 mt-3" >
-      <label for="exampleInputEmail1" class="form-label">Last Name</label>
-      <input type="text" class="form-control" name="last_name">
-    </div>
-    <div class="mb-3 mt-3" >
-      <label for="exampleInputEmail1" class="form-label">User Name</label>
-      <input type="text" class="form-control" name="username">
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" name="password">
-    </div>
-
-      <div class="mb-3 form-check">
-        <p>I  Have Username  <a href="/Adminlogin/"> Login</a></p>
+    <form  method="post">
+      {% csrf_token %}
+      {%if messages%}
+      <div class="alert alert-primary" role="alert">
+          {%for message in messages %}
+          {{message}}
+          {%endfor%}
         </div>
-    <div class="mb-3 form-check">
-    <button type="submit" class="btn btn-primary">Register</button>
-    </div>
-  </form>
+        {%endif%}
+    <TABLE align=center width="30%" class="mt-5">
+      <h3 class="mt-5"><b>Invigilator Login Screen</b></h3>
+      <TR><TH align="left"><font size="2" color="black">Name</font>
+        <TD>&nbsp;<Input type="text" name="first_name" class="mt-3" value='' >
+        </TD>
+        </TR>
+      <TR><TH align="left"><font size="2" color="black">Username</font>
+      <TD>&nbsp;<Input type="text" name="username" class="mt-3" value='' >
+      </TD>
+      </TR>
+          <TR><TH align="left"><font size="2" color="black">Password</font>
+              <TD>&nbsp;<Input type="password" name="password" class="mt-3" value='' >
+              </TD>
+              </TR>
+              <tr class="mt-5">
+                <td >
+                  <span class="mt-3" style="display: inline-block; white-space: nowrap; ">I Have Username <a href="/Adminlogin/" style="display: inline-block; text-decoration: none;"> Login</span></p>
+                  
+                  </td>
+                </tr>
+                <tr>
+  <td>
+    <input style="margin-left: 100px;" type="submit" value="Register">
+  </td>
+</tr>
+  
+  
+
+  
+
+  
+  
+  </TABLE>
+  
+  
+  
+  
 </div>
  
 {%endblock%}

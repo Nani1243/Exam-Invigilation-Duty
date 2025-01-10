@@ -39,19 +39,24 @@
             <h4><a class="nav-link mx-auto" href="/ViewSchedule/" >View Scheduled</a></h4>
           </li>
           <li class="nav-item">
-            <h4><a class="nav-link " href="/index/" >Logout</a></h4>
+            <h4><a class="nav-link " href="/logout_page/" >Logout</a></h4>
           </li>
         </ul>
       </div>
     </div>
   </nav>
  <center> <img class="mt-5" src="{% static 'mysite/images/tra.jpg' %}" width="500px" ></center>
-{% for q in queryset %}
- <center><b>{{q.examname}} Invigilator Choosen As {{q.facultyname1}}</b></center>
+ {%if messages%}
+ <div class="alert alert-primary" role="alert">
+     {%for message in messages %}
+     {{message}}
+     {%endfor%}
+   </div>
+   {%endif%}
+ <center><b>{{q.exam}} Invigilator Choosen As {{faculty}}</b></center>
  <center><b>Hall No : {{q.hall}}</b></center>
  <center><b>Exam Date :  {{q.examdate}}</b></center>
  <center><b>Exam Time :  {{q.examtime}}</b></center>
 
 
-{%endfor%}
 {%endblock%}

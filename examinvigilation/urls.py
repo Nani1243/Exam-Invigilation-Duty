@@ -33,5 +33,6 @@ urlpatterns = [
     path("ViewSchedule/",ViewSchedule,name='ViewSchedule'),
     path("invigilator/",invigilator,name='invigilator'),
     path("invigilatorpage/<res>",invigilatorpage,name='invigilatorpage'), 
-    path("invigilatorAllot/<faculty_name>",invigilatorAllot,name='invigilatorAllot'),           
+    path("invigilatorAllot/<faculty_name>",invigilatorAllot,name='invigilatorAllot'),
+    path('logout_page/',logout_page,name="logout_page"),    
 ]
